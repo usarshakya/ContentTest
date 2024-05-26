@@ -21,6 +21,19 @@ module Api
         end
       end
 
+      # PUT /api/v1/contents/:id
+      def update
+        content = current_user.contents.find_by(id: params[:id])
+        raise ExceptionHandler::NotFound if content.blank?
+
+        if content.update(content_params)
+          render json: content, status: :ok
+        else
+          error = { error: content.errors }
+          render json: error, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def content_params

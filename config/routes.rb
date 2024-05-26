@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       end
 
       get '/content', to: 'contents#index'
-      resources :contents, except: %i[index show]
+      resources :contents, except: %i[index show edit]
     end
   end
 end
