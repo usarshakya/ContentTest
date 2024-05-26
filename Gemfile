@@ -46,6 +46,9 @@ gem 'active_model_serializers', '~> 0.10.14'
 # Used for token based authentication
 gem 'jwt', '~> 2.7', '>= 2.7.1'
 
+# Manage environment variables
+gem 'dotenv'
+
 group :development, :test do
   # Provides an interactive REPL (Read-Eval-Print Loop) for debugging code
   gem 'pry', '~> 0.14.2'

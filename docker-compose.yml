@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  api:
+    image: content_test_api:latest
+    restart: always
+    environment:
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
