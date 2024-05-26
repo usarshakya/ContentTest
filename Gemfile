@@ -41,6 +41,9 @@ group :development, :test do
 
   # Add a comment summarizing the current schema
   gem 'annotate'
+
+  # Alert to use N+1 queries
+  gem 'bullet'
 end
 
 group :development do
