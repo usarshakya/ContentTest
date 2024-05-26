@@ -21,21 +21,28 @@ class User < ApplicationRecord
   include BCrypt
   include RegexPattern
 
-  validates :first_name, :last_name, :email, :password_hash, presence: true
+  validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
   validates :email, format: { with: EMAIL_REGEX }
+  validate :validate_password
 
   def password
     @password ||= Password.new(password_hash)
   end
 
   def password=(new_password)
-    if PASSWORD_REGEX.match?(new_password)
-      @password = Password.create(new_password)
-      self.password_hash = @password
-    else
-      errors.add(:password, 'Must be a valid password with at least one uppercase letter, one digit, one special character, and a length of 8 character')
-      raise ActiveRecord::RecordInvalid, self
-    end
+    @new_password = new_password
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
+
+  private
+
+  def validate_password
+    errors.add(:password, "can't be blank") if @password.nil?
+
+    return if PASSWORD_REGEX.match?(@new_password)
+
+    errors.add(:password, 'must have at least one uppercase letter, one digit, one special character, and be at least 8 characters long')
   end
 end

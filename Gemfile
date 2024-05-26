@@ -38,6 +38,9 @@ gem "bootsnap", require: false
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
+# Library for data serialization
+gem 'active_model_serializers', '~> 0.10.14'
+
 group :development, :test do
   # Provides an interactive REPL (Read-Eval-Print Loop) for debugging code
   gem 'pry', '~> 0.14.2'
