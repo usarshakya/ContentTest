@@ -34,6 +34,15 @@ module Api
         end
       end
 
+      # DELETE /api/v1/contents/:id
+      def destroy
+        content = current_user.contents.find_by(id: params[:id])
+        raise ExceptionHandler::NotFound if content.blank?
+
+        content.destroy
+        render json: { message: 'Deleted' }, status: :ok
+      end
+
       private
 
       def content_params

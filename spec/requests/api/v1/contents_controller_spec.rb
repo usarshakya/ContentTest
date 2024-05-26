@@ -77,6 +77,28 @@ RSpec.describe Api::V1::ContentsController, type: :request do
         end
       end
     end
+
+    describe 'DELETE /api/v1/contents/:id' do
+      let!(:content) { create(:content, user:) }
+      context 'when self created content' do
+
+        it 'allows to destroy content successfully' do
+          send_delete_request("/api/v1/contents/#{content.id}", {})
+          expect(response).to have_http_status(:ok)
+          expect(Content.count).to eq(0)
+        end
+      end
+
+      context 'when not self created content' do
+        let!(:user1) { create(:user, password: 'Password@123') }
+        let!(:content1) { create(:content, user: user1) }
+
+        it 'returns 404 as content doesnt found' do
+          send_delete_request("/api/v1/contents/#{content1.id}", {})
+          expect(response).to have_http_status(:not_found)
+        end
+      end
+    end
   end
 
   shared_context :unauthorized_requests do
@@ -96,7 +118,16 @@ RSpec.describe Api::V1::ContentsController, type: :request do
       end
     end
 
-    describe 'GET /api/v1/contents/:id' do
+    describe 'PUT /api/v1/contents/:id' do
+      let!(:user1) { create(:user, password: 'Password@123') }
+      let!(:content) { create(:content, user: user1) }
+      it 'returns unauthorized error' do
+        send_put_request("/api/v1/contents/#{content.id}", {}, {})
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    describe 'DELETE /api/v1/contents/:id' do
       let!(:user1) { create(:user, password: 'Password@123') }
       let!(:content) { create(:content, user: user1) }
       it 'returns unauthorized error' do
