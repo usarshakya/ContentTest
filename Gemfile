@@ -36,8 +36,22 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
+  # Provides an interactive REPL (Read-Eval-Print Loop) for debugging code
+  gem 'pry', '~> 0.14.2'
+
+  # Generates test data
+  gem 'factory_bot_rails'
+
+  # Provides mock data for various data types
+  gem 'faker'
+
+  # Provides a testing framework (RSpec) for writing tests
+  gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
+end
+
+group :development do
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  # gem "spring"
 
   # Add a comment summarizing the current schema
   gem 'annotate'
@@ -46,8 +60,7 @@ group :development, :test do
   gem 'bullet'
 end
 
-group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+group :test do
+  # Provides test coverage reporting
+  gem 'simplecov', require: false
 end
-
