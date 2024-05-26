@@ -63,6 +63,10 @@ Before you begin, ensure you have the following installed on your local machine:
   docker-compose up -d
   ```
 
+## Postman Collection
+Here is the postman collection link:
+[Content Test Backend](https://documenter.getpostman.com/view/2716857/2sA3QqhYn9)
+
 ### Troubleshooting
 If you encounter any issues during setup or running the application, consider the following:
 
