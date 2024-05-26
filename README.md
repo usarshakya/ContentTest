@@ -21,7 +21,7 @@ Before you begin, ensure you have the following installed on your local machine:
 
 3. Install Dependencies
   Install the required gems using Bundler:
-  ``sh
+  ```sh
   bundle install
   ```
 
