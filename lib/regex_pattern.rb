@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # lib/regex_pattern.rb
 
 module RegexPattern

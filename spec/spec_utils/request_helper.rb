@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RequestHelper
   def send_get_request(route, params = {}, headers = auth_headers)
     get route, headers:, params:

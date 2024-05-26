@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -45,6 +47,7 @@ class User < ApplicationRecord
 
     return if PASSWORD_REGEX.match?(@new_password)
 
-    errors.add(:password, 'must have at least one uppercase letter, one digit, one special character, and be at least 8 characters long')
+    errors.add(:password,
+               'must have at least one uppercase letter, one digit, one special character, and be at least 8 characters long')
   end
 end

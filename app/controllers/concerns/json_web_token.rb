@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'jwt'
 
 # app/controllers/concerns/json_web_token.rb

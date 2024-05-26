@@ -81,7 +81,6 @@ RSpec.describe Api::V1::ContentsController, type: :request do
     describe 'DELETE /api/v1/contents/:id' do
       let!(:content) { create(:content, user:) }
       context 'when self created content' do
-
         it 'allows to destroy content successfully' do
           send_delete_request("/api/v1/contents/#{content.id}", {})
           expect(response).to have_http_status(:ok)
