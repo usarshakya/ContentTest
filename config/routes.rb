@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       resources :users, only: [] do
         post :signup, on: :collection
       end
+      resources :auth, only: [] do
+        post :signin, on: :collection
+      end
     end
   end
 end
