@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :auth, only: [] do
         post :signin, on: :collection
       end
+      resources :contents, except: :index
     end
   end
 end

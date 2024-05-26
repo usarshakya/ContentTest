@@ -21,6 +21,6 @@ FactoryBot.define do
     last_name  { Faker::Name.last_name }
     email { Faker::Internet.unique.email }
     country { Faker::Address.country }
-    password_hash { BCrypt::Password.create('SecurePassword1!') }
+    password_hash { BCrypt::Password.create('Password@123') }
   end
 end

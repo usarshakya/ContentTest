@@ -21,6 +21,8 @@ class User < ApplicationRecord
   include BCrypt
   include RegexPattern
 
+  has_many :contents, dependent: :destroy
+
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
   validates :email, format: { with: EMAIL_REGEX }
