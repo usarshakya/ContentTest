@@ -35,6 +35,9 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
+
 group :development, :test do
   # Provides an interactive REPL (Read-Eval-Print Loop) for debugging code
   gem 'pry', '~> 0.14.2'
