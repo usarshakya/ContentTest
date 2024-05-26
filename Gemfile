@@ -38,6 +38,9 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+
+  # Add a comment summarizing the current schema
+  gem 'annotate'
 end
 
 group :development do
