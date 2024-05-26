@@ -9,7 +9,6 @@
 
 # Ignore all environment files (except templates).
 /.env*
-!/.env*.erb
 
 # Ignore coverage files
 /coverage
@@ -19,6 +18,8 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+
+/pg_data
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
