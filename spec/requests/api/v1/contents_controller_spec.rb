@@ -10,8 +10,9 @@ RSpec.describe Api::V1::ContentsController, type: :request do
 
         it 'creates content' do
           send_post_request('/api/v1/contents', valid_params.to_json)
+          json_response = JSON.parse(response.body)
           expect(response).to have_http_status(:created)
-          expect(JSON.parse(response.body)['data']['attributes']['title']).to eq('title test')
+          expect(json_response['data']['attributes']['title']).to eq('title test')
         end
       end
 
@@ -24,6 +25,23 @@ RSpec.describe Api::V1::ContentsController, type: :request do
         end
       end
     end
+
+    describe 'GET /api/v1/content' do
+      let!(:user1) { create(:user, password: 'Password@123') }
+      let!(:content1) { create(:content, user: user1) }
+      let!(:content2) { create(:content, user: user1) }
+
+      it 'returns a successful response' do
+        send_get_request('/api/v1/content', {})
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns all contents' do
+        send_get_request('/api/v1/content', {})
+        json_response = JSON.parse(response.body)
+        expect(json_response['data'].count).to eq(2)
+      end
+    end
   end
 
   shared_context :unauthorized_requests do
@@ -32,6 +50,13 @@ RSpec.describe Api::V1::ContentsController, type: :request do
 
       it 'returns unauthorized error' do
         send_post_request('/api/v1/contents', valid_params.to_json, {})
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    describe 'GET /api/v1/content' do
+      it 'returns unauthorized error' do
+        send_get_request('/api/v1/content', {}, {})
         expect(response).to have_http_status(:unauthorized)
       end
     end
