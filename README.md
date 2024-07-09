@@ -1,4 +1,5 @@
 # Content Test Backend
+This repository demonstrates a REST API implementation in Rails using standard JSON API serialization. It includes JWT-based user token authentication, providing a secure and efficient way to manage user sessions and API access. The project showcases best practices for building robust and scalable APIs in Rails.
 
 ## Prerequisites
 Before you begin, ensure you have the following installed on your local machine:
